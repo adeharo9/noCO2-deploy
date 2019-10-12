@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]; then
+    printf "Please run as root\n";
+    exit 1;
+fi
+
+## CONFIGS
+# Paths
+NOCO2_PATH=/home/papaya/noCO2-meta
+NOCO2_CORE=${NOCO2_PATH}/noCO2-core
+
+# Files      
+CORE_EXE=core
+
+## BODY
+# CORE
+# Update repo
+cd ${NOCO2_CORE};
+printf "Updating local core repository...\n";
+git pull origin master;
+printf "Core repository updated\n";
+
+# Recompile core
+printf "Deleting old core...\n";
+rm -f ${CORE_EXE};
+printf "Old core deleted\n";
+printf "Compiling new core...\n";
+make ${CORE_EXE};
+printf "New core compiled\n";

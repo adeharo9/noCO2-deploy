@@ -1,0 +1,38 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]; then
+    printf "Please run as root\n";
+    exit 1;
+fi
+
+## CONFIGS
+# Paths
+NOCO2_PATH=/home/papaya/noCO2-meta
+NOCO2_BACK=${NOCO2_PATH}/noCO2-back
+
+## BODY
+# BACKEND
+# Update repo
+cd ${NOCO2_BACK};
+printf "Updating local backend repository...\n";
+git pull origin master;
+printf "Backend repository updated\n";
+
+# Install new dependencies
+printf "Installing new dependencies\n";
+npm install
+printf "New dependencies installed\n";
+
+# Kill old server backends
+printf "Killing old server backends...\n";
+NODE_PIDS=$(ps -a | grep "^[0-9]\+.*node" | grep -o "^[0-9]\+");
+for NODE_PID in ${NODE_PIDS}; do
+    kill ${NODE_PID};
+    printf "Killed server with PID ${NODE_PID}\n";
+done
+printf "Old server backends killed\n";
+
+# Start new server backend
+printf "Starting new server backend...\n";
+npm run start;
+printf "New server backend started\n";

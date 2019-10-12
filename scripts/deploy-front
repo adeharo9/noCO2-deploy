@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]; then
+    printf "Please run as root\n";
+    exit 1;
+fi
+
+## CONFIGS
+# Paths
+NOCO2_PATH=/home/papaya/noCO2-meta
+NOCO2_FRONT=${NOCO2_PATH}/noCO2-front
+APACHE_DIR=/var/www/html
+
+## BODY
+# FRONTEND
+# Update repo
+cd ${NOCO2_FRONT};
+printf "Updating local frontend repository...\n";
+git pull origin master;
+printf "Frontend repository updated\n";
+
+# Update Apache files
+printf "Deleting old frontend from Apache...\n";
+rm -rf ${APACHE_DIR}/*;
+printf "Old frontend deleted\n";
+printf "Uploading new frontend to Apache...\n";
+cp -r * ${APACHE_DIR};
+printf "New frontend uploaded\n";

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]; then
+    printf "Please run as root\n";
+    exit 1;
+fi
+
+## CONFIGS
+# Paths
+NOCO2_PATH=/home/papaya/noCO2-meta
+
+## BODY
+# META
+# Update repos
+cd ${NOCO2_PATH};
+git pull origin master;
+
+# CORE
+./deploy-core
+
+# BACKEND
+./deploy-back
+
+# FRONTEND
+./deploy-front
