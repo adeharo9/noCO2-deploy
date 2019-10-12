@@ -7,7 +7,7 @@ module.exports = (script, body) =>
     {
         try
         {
-            console.log(child_process.execSync(`${script}`));
+            console.log(child_process.execSync(`${script}`).toString());
             return resolve(HttpStatusCode.ok('success'));
         }
         catch(err)
