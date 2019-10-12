@@ -11,11 +11,13 @@ NOCO2_PATH=/home/papaya/noCO2-meta
 
 ## BODY
 # META
+OLD_PATH=${PWD}
 # Update repos
 cd ${NOCO2_PATH};
 git pull origin master;
 
 # CORE
+cd ${OLD_PATH};
 ./deploy-core
 
 # BACKEND
