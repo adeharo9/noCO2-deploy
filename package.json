@@ -2,11 +2,11 @@
   "name": "noco2-deploy",
   "version": "0.1.0",
   "description": "Deployment server for noCO2 project",
-  "main": "server.js",
+  "main": "deploy.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js > log.out 2> log.err &",
-    "start-dev": "nodemon --inspect server.js --dev"
+    "start": "node deploy.js > log.out 2> log.err &",
+    "start-dev": "nodemon --inspect deploy.js --dev"
   },
   "repository": {
     "type": "git",
