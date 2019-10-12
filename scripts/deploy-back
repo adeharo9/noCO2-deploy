@@ -29,8 +29,8 @@ printf "New dependencies installed\n";
 printf "Killing old server backends...\n";
 NODE_PIDS=$(ps -a | grep "^[0-9]\+.*node" | grep -o "^[0-9]\+");
 for NODE_PID in ${NODE_PIDS}; do
-    printf "${IGNORE_PID}\n";
-    printf "${NODE_PID}\n";
+    echo "${IGNORE_PID}" > hmmm.txt
+    echo "${NODE_PID}" > hmmm.txt
     if [ ${IGNORE_PID} -ne ${NODE_PID} ]; then
         kill ${NODE_PID};
         printf "Killed server with PID ${NODE_PID}\n";
