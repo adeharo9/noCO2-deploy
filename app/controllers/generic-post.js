@@ -12,7 +12,7 @@ module.exports = (script, body) =>
         }
         catch(err)
         {
-            return reject(err);
+            return reject(HttpStatusCode.internalServerError(err.message));
         }
     });
 };
