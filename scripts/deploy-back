@@ -10,8 +10,6 @@ fi
 NOCO2_PATH=/home/papaya/noCO2-meta
 NOCO2_BACK=${NOCO2_PATH}/noCO2-back
 
-IGNORE_PID=$1
-
 ## BODY
 # BACKEND
 # Update repo
@@ -27,12 +25,10 @@ printf "New dependencies installed\n";
 
 # Kill old server backends
 printf "Killing old server backends...\n";
-NODE_PIDS=$(ps -a | grep "^[0-9]\+.*node" | grep -o "^[0-9]\+");
+NODE_PIDS=$(ps -ax | grep "^[0-9]\+.*node api.js" | grep -o "^[0-9]\+");
 for NODE_PID in ${NODE_PIDS}; do
-    if [ "${IGNORE_PID}" -ne "${NODE_PID}" ]; then
-        kill ${NODE_PID};
-        printf "Killed server with PID ${NODE_PID}\n";
-    fi
+    kill ${NODE_PID};
+    printf "Killed server with PID ${NODE_PID}\n";
 done
 printf "Old server backends killed\n";
 
