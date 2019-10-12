@@ -2,5 +2,5 @@ const genericPost = require('./generic-post');
 
 module.exports = (body) =>
 {
-    genericPost('./scripts/deploy-all', body);
+    return genericPost('./scripts/deploy-all', body);
 };

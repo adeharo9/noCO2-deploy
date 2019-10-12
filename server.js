@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 /* Initialize endpoints */
 const routes = require('./app/resources/routes');
-app.use('/', routes);
+app.use('/deploy', routes);
 
 /* Start server */
 let serverHttp;
