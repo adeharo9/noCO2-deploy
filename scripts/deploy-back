@@ -38,5 +38,5 @@ printf "Old server backends killed\n";
 
 # Start new server backend
 printf "Starting new server backend...\n";
-$(npm run start);
+npm run start;
 printf "New server backend started\n";
