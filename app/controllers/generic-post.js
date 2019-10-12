@@ -7,8 +7,13 @@ module.exports = (script, body) =>
     {
         try
         {
-            console.log(child_process.execSync(`${script}`).toString());
-            return resolve(HttpStatusCode.ok('success'));
+            if (body.ref === 'refs/heads/master')
+            {
+                child_process.execSync(`${script}`);
+                return resolve(HttpStatusCode.ok('success'));
+            }
+            
+            return resolve(HttpStatusCode.ok('branch was not master'));
         }
         catch(err)
         {
